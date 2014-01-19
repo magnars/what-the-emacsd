@@ -8,7 +8,8 @@
                  [enlive "1.1.5"]
                  [optimus "0.14.2"]
                  [ring "1.2.1"]
-                 [clj-time "0.5.1"]]
+                 [clj-time "0.5.1"]
+                 [org.clojure/data.xml "0.0.7"]]
   :ring {:handler what-the-emacsd.core/app
          :port 3456}
   :aliases {"build-site" ["run" "-m" "what-the-emacsd.core/export"]}

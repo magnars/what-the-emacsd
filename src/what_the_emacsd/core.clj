@@ -6,6 +6,7 @@
             [optimus.optimizations :as optimizations]
             [optimus.strategies :refer [serve-live-assets]]
             [optimus.export]
+            [what-the-emacsd.posts :as posts]
             [what-the-emacsd.pages :as pages]))
 
 (defn get-assets []
@@ -21,7 +22,7 @@
 
 (defn get-pages []
   (require 'what-the-emacsd.templates :reload)
-  (pages/get-pages (load-content)))
+  (pages/get-pages (posts/get-posts (load-content))))
 
 (def app (-> (stasis/serve-pages get-pages)
              (optimus/wrap get-assets optimizations/all serve-live-assets)
