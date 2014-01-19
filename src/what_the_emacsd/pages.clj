@@ -16,5 +16,5 @@
 (defn get-pages [posts]
   (merge
    {"/index.html" (create-page #(tmpl/all-posts posts))
-    "/atom.xml" (fn [_] (rss/atom-xml posts))}
+    "/atom.xml" (rss/atom-xml posts)}
    (single-posts posts)))

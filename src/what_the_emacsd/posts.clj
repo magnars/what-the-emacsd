@@ -11,5 +11,5 @@
    :date (extract-date content)
    :name (subs path 1 (- (count path) 5))}) ; chop off / and .html
 
-(defn get-posts [content]
-  (->> content :posts (map to-post) (sort-by :date) reverse))
+(defn get-posts [files]
+  (->> files (map to-post) (sort-by :date) reverse))

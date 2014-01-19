@@ -17,12 +17,12 @@
                                  "/images/logo.png"
                                  #"/scripts/.*\.js"])))
 
-(defn load-content []
-  {:posts (stasis/slurp-directory "resources/posts/" #"\.html$")})
+(defn load-posts []
+  (posts/get-posts (stasis/slurp-directory "resources/posts/" #"\.html$")))
 
 (defn get-pages []
   (require 'what-the-emacsd.templates :reload)
-  (pages/get-pages (posts/get-posts (load-content))))
+  (pages/get-pages (load-posts)))
 
 (def app (-> (stasis/serve-pages get-pages)
              (optimus/wrap get-assets optimizations/all serve-live-assets)
