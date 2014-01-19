@@ -1,0 +1,31 @@
+<!-- 1356598393 -->
+
+<p>Opening new lines can be finicky.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">open-line-below</span> ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(<span class="keyword">defun</span> <span class="function-name">open-line-above</span> ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd <span class="string">"&lt;C-return&gt;"</span>) 'open-line-below)
+(global-set-key (kbd <span class="string">"&lt;C-S-return&gt;"</span>) 'open-line-above)</pre>
+
+<hr/>
+
+<p>
+  With these shortcuts you can open a new line above or below the
+  current one, even if the cursor is midsentence.
+</p>
+
+<p> Try it out, it's a nice convenience. </p>

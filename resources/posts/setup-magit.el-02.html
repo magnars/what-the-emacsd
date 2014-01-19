@@ -1,0 +1,34 @@
+<!-- 1356515010 -->
+
+<p>Actual changes lost in a sea of whitespace diffs?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">magit-toggle-whitespace</span> ()
+  (interactive)
+  (<span class="keyword">if</span> (member <span class="string">"-w"</span> magit-diff-options)
+      (magit-dont-ignore-whitespace)
+    (magit-ignore-whitespace)))
+
+(<span class="keyword">defun</span> <span class="function-name">magit-ignore-whitespace</span> ()
+  (interactive)
+  (add-to-list 'magit-diff-options <span class="string">"-w"</span>)
+  (magit-refresh))
+
+(<span class="keyword">defun</span> <span class="function-name">magit-dont-ignore-whitespace</span> ()
+  (interactive)
+  (setq magit-diff-options (remove <span class="string">"-w"</span> magit-diff-options))
+  (magit-refresh))
+
+(define-key magit-status-mode-map (kbd <span class="string">"W"</span>) 'magit-toggle-whitespace)</pre>
+
+<hr/>
+
+<p>This adds <kbd>W</kbd> to toggle ignoring whitespace in magit.</p>
+
+<p>
+  It has some weird interactions with the changed files list, in that
+  files with nothing but whitespace changes go missing. Toggle back to
+  find them again.
+</p>

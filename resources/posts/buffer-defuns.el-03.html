@@ -1,0 +1,39 @@
+<!-- 1357641110 -->
+
+<p>Annoyed when Emacs opens the window below instead at the side?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">toggle-window-split</span> ()
+  (interactive)
+  (<span class="keyword">if</span> (= (count-windows) 2)
+      (<span class="keyword">let*</span> ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (&lt;= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (&lt;= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (<span class="keyword">if</span> (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  'split-window-horizontally
+                'split-window-vertically)))
+        (delete-other-windows)
+        (<span class="keyword">let</span> ((first-win (selected-window)))
+          (funcall splitter)
+          (<span class="keyword">if</span> this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)
+          (<span class="keyword">if</span> this-win-2nd (other-window 1))))))</pre>
+
+<hr/>
+
+<p>This snippet toggles between horizontal and vertical layout of two windows.</p>
+
+<p>
+  Neat.
+</p>

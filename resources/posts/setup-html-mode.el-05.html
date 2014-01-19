@@ -1,0 +1,18 @@
+<!-- 1369405636 -->
+
+<p>Ever been annoyed at the lack of reindentation after using <code>
+    sgml-delete-tag?
+</code></p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">after deleting a tag, indent properly
+</span>(<span class="keyword">defadvice</span> <span class="function-name">sgml-delete-tag</span> (after reindent activate)
+  (indent-region (point-min) (point-max)))</pre>
+
+<hr/>
+
+<p>Be annoyed no more!</p>
+
+<p>This blogpost brought to you live from WebRebels 2013.</p>

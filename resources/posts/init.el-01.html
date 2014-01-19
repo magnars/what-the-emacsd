@@ -1,0 +1,49 @@
+<!-- 1355777146 -->
+
+<p>
+  Behold the very first lines in my <code>.emacs.d/init.el</code>:
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Turn off mouse interface early in startup to avoid momentary display
+</span>(<span class="keyword">if</span> (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(<span class="keyword">if</span> (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(<span class="keyword">if</span> (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+<span class="comment-delimiter">;; </span><span class="comment">No splash screen please ... jeez
+</span>(setq inhibit-startup-message t)</pre>
+
+<hr/>
+
+<p>
+  They hide the menu bar, tool bar, scroll bar and splash screen.
+  Doing so early avoids ever having to see them - not even for a brief
+  flash when starting Emacs.
+</p>
+<p>
+  These four lines move us into the tranquil zone of <em>nothing but
+    the text</em>. A raster interface can never hold the seeming
+  infinitude of Emacs functionality, so we just let it go.
+</p>
+
+<hr/>
+
+<div class="quote">
+  <blockquote>
+    "What I don't understand is: why should you ever care how your editor
+    looks, unless you're trying to win a screenshot competition? The
+    primary factor in looking good should be the choice of a good font
+    at a comfortable size, and a syntax coloring theme that you like.
+    And that is not something specific to an editor. Editors like Emacs
+    and vi have almost no UI! If Emacs is configured right, the only UI
+    it has is the modeline and the minibuffer."
+  </blockquote>
+  <p>
+    - Vivek Haldar in
+    <a href="http://blog.vivekhaldar.com/post/31970017734/new-frontiers-in-text-editing">
+      New Frontiers In Text Editing
+    </a>
+  </p>
+</div>

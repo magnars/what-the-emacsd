@@ -1,0 +1,43 @@
+<!-- 1360998097 -->
+
+<p>In html-mode, forward/backward-paragraph is infuriatingly slow.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">skip-to-next-blank-line</span> ()
+  (interactive)
+  (<span class="keyword">let</span> ((inhibit-changing-match-data t))
+    (skip-syntax-forward <span class="string">" &gt;"</span>)
+    (<span class="keyword">unless</span> (search-forward-regexp <span class="string">"^\\s *$"</span> nil t)
+      (goto-char (point-max)))))
+
+(<span class="keyword">defun</span> <span class="function-name">skip-to-previous-blank-line</span> ()
+  (interactive)
+  (<span class="keyword">let</span> ((inhibit-changing-match-data t))
+    (skip-syntax-backward <span class="string">" &gt;"</span>)
+    (<span class="keyword">unless</span> (search-backward-regexp <span class="string">"^\\s *$"</span> nil t)
+      (goto-char (point-min)))))
+
+(<span class="keyword">eval-after-load</span> <span class="string">"sgml-mode"</span>
+  '(<span class="keyword">progn</span>
+     (define-key html-mode-map
+       [remap forward-paragraph] 'skip-to-next-blank-line)
+
+     (define-key html-mode-map
+       [remap backward-paragraph] 'skip-to-previous-blank-line)))</pre>
+
+<hr/>
+
+<p>I use them a lot for quick navigation. In html-mode, they are anything but quick.</p>
+
+<p>
+  Defining paragraphs in Emacs is black magic, and I'm not sure it's a
+  good idea to change that in case something else relies on its erratic behavior.
+</p>
+
+<p>
+  Instead I just remap the commands to my home brewed
+  skip-to-next/previous-blank-line. Ahh, speedy and predictable
+  navigation once more.
+</p>

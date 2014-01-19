@@ -1,0 +1,29 @@
+<!-- 1360298925 -->
+
+<p>Okay, this is a bad idea if your files are prefixed with <code>~</code>.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(add-hook 'ido-setup-hook
+ (<span class="keyword">lambda</span> ()
+   <span class="comment-delimiter">;; </span><span class="comment">Go straight home
+</span>   (define-key ido-file-completion-map
+     (kbd <span class="string">"~"</span>)
+     (<span class="keyword">lambda</span> ()
+       (interactive)
+       (<span class="keyword">if</span> (looking-back <span class="string">"/"</span>)
+           (insert <span class="string">"~/"</span>)
+         (call-interactively 'self-insert-command))))))</pre>
+
+<hr/>
+
+<p>
+  But if they're not, this keybinding lets you even more quickly reach
+  your home folder when in ido-find-file.
+</p>
+
+<p>
+  It doesn't matter if you're a million directories in, just
+  press <kbd>~</kbd> to go home.
+</p>

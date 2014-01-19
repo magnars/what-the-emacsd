@@ -1,0 +1,42 @@
+<!-- 1359446162 -->
+
+<p>
+  I use <a href="https://twitter.com/technomancy">Phil
+  Hagelberg</a>s' <a href="https://github.com/technomancy/find-file-in-project">find-file-in-project</a>,
+  but fuzzy matching with LOTS of files can be suboptimal.
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Function to create new functions that look for a specific pattern
+</span>(<span class="keyword">defun</span> <span class="function-name">ffip-create-pattern-file-finder</span> (<span class="type">&amp;rest</span> patterns)
+  (<span class="keyword">lexical-let</span> ((patterns patterns))
+    (<span class="keyword">lambda</span> ()
+      (interactive)
+      (<span class="keyword">let</span> ((ffip-patterns patterns))
+        (find-file-in-project)))))
+
+<span class="comment-delimiter">;; </span><span class="comment">Find file in project, with specific patterns
+</span>(global-unset-key (kbd <span class="string">"C-x C-o"</span>))
+(global-set-key (kbd <span class="string">"C-x C-o ja"</span>)
+                (ffip-create-pattern-file-finder <span class="string">"*.java"</span>))
+(global-set-key (kbd <span class="string">"C-x C-o js"</span>)
+                (ffip-create-pattern-file-finder <span class="string">"*.js"</span>))
+(global-set-key (kbd <span class="string">"C-x C-o jp"</span>)
+                (ffip-create-pattern-file-finder <span class="string">"*.jsp"</span>))</pre>
+
+<hr/>
+
+<p>
+  This function limits the search to files of a specific file type.
+  I've got loads more of these keybindings, all of them with the
+  two-letter mnemonic shortcut.
+</p>
+
+<p>
+  It really speeds up finding files. Both
+  because <code>ido-completing-read</code> has less matches to worry
+  about, because there are fewer similarly named files, and especially
+  when the .java, the .js and the .jsp share a name.
+</p>

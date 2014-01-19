@@ -1,0 +1,26 @@
+<!-- 1356556460 -->
+
+<p><kbd>C-d</kbd> on an empty line in the shell terminates the process.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">comint-delchar-or-eof-or-kill-buffer</span> (arg)
+  (interactive <span class="string">"p"</span>)
+  (<span class="keyword">if</span> (null (get-buffer-process (current-buffer)))
+      (kill-buffer)
+    (comint-delchar-or-maybe-eof arg)))
+
+(add-hook 'shell-mode-hook
+          (<span class="keyword">lambda</span> ()
+            (define-key shell-mode-map
+              (kbd <span class="string">"C-d"</span>) 'comint-delchar-or-eof-or-kill-buffer)))</pre>
+
+<hr/>
+
+<p>With this snippet, another press of <kbd>C-d</kbd> will kill the buffer.</p>
+
+<p>
+  It's pretty nice, since you then just tap <kbd>C-d</kbd> twice to
+  get rid of the shell and go on about your merry way.
+</p>

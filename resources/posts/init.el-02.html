@@ -1,0 +1,35 @@
+<!-- 1355777151 -->
+
+<p>
+  Annoyed by those pesky <code>~</code> files?
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Write backup files to own directory
+</span>(setq backup-directory-alist
+      `((<span class="string">"."</span> . ,(expand-file-name
+                 (concat user-emacs-directory <span class="string">"backups"</span>)))))
+
+<span class="comment-delimiter">;; </span><span class="comment">Make backups of files, even when they're in version control
+</span>(setq vc-make-backup-files t)
+</pre>
+
+<hr/>
+
+<p>
+  Backup files are so very annoying, until the day they save your
+  hide. That's when you don't want to look back and say "Man, I
+  really shouldn't have disabled those stupid backups."
+</p>
+
+<p>
+  These settings move all backup files to a central location.
+  <em>Bam!</em> No longer annoying.
+</p>
+
+<p>
+  As an added bonus, that last line makes sure your files are backed
+  up even when the files are in version control. Do it.
+</p>

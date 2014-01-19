@@ -1,0 +1,33 @@
+<!-- 1356790455 -->
+
+<p>For some reason, renaming the current buffer file is a multi-step process in Emacs.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">rename-current-buffer-file</span> ()
+  <span class="doc">"Renames current buffer and file it is visiting."</span>
+  (interactive)
+  (<span class="keyword">let</span> ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (<span class="keyword">if</span> (not (and filename (file-exists-p filename)))
+        (<span class="warning">error</span> <span class="string">"Buffer '%s' is not visiting a file!"</span> name)
+      (<span class="keyword">let</span> ((new-name (read-file-name <span class="string">"New name: "</span> filename)))
+        (<span class="keyword">if</span> (get-buffer new-name)
+            (<span class="warning">error</span> <span class="string">"A buffer named '%s' already exists!"</span> new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message <span class="string">"File '%s' successfully renamed to '%s'"</span>
+                   name (file-name-nondirectory new-name)))))))
+
+(global-set-key (kbd <span class="string">"C-x C-r"</span>) 'rename-current-buffer-file)</pre>
+
+<hr/>
+
+<p>
+  This defun fixes that. And unlike some other alternatives to perform
+  this common task, you don't have to type the name out from scratch -
+  but get the current name to modify. Like it should be.
+</p>

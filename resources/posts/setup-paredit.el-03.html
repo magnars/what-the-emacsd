@@ -1,0 +1,22 @@
+<!-- 1358685804 -->
+
+<p>I love the symbiosis between expand-region and delete-selection-mode.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">making paredit work with delete-selection-mode
+</span>(put 'paredit-forward-delete 'delete-selection 'supersede)
+(put 'paredit-backward-delete 'delete-selection 'supersede)
+(put 'paredit-open-round 'delete-selection t)
+(put 'paredit-open-square 'delete-selection t)
+(put 'paredit-doublequote 'delete-selection t)
+(put 'paredit-newline 'delete-selection t)</pre>
+
+<hr/>
+
+<p>
+  This makes paredit-mode work with delete-selection-mode, replacing
+  its wrapping behavior. If I want to wrap, I'll do it with the
+  paredit-wrap-* commands explicitly.
+</p>

@@ -1,0 +1,34 @@
+<!-- 1356713134 -->
+
+<p>When programming I tend to shuffle lines around a lot.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">move-line-down</span> ()
+  (interactive)
+  (<span class="keyword">let</span> ((col (current-column)))
+    (<span class="keyword">save-excursion</span>
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
+
+(<span class="keyword">defun</span> <span class="function-name">move-line-up</span> ()
+  (interactive)
+  (<span class="keyword">let</span> ((col (current-column)))
+    (<span class="keyword">save-excursion</span>
+      (forward-line)
+      (transpose-lines -1))
+    (move-to-column col)))
+
+(global-set-key (kbd <span class="string">"&lt;C-S-down&gt;"</span>) 'move-line-down)
+(global-set-key (kbd <span class="string">"&lt;C-S-up&gt;"</span>) 'move-line-up)</pre>
+
+<hr/>
+
+<p>
+  Maybe not when I program elisp, since that's sexp-based, but for
+  other programming languages these two come in very handy. They
+  simply move the current line one step up or down.
+</p>

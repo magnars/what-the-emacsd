@@ -1,0 +1,35 @@
+<!-- 1366365807 -->
+
+<p>Where do you put your project specific settings?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defmacro</span> <span class="function-name">project-specifics</span> (name <span class="type">&amp;rest</span> body)
+  (<span class="keyword">declare</span> (indent 1))
+  `(<span class="keyword">progn</span>
+     (add-hook 'find-file-hook
+               (<span class="keyword">lambda</span> ()
+                 (<span class="keyword">when</span> (string-match-p ,name (buffer-file-name))
+                   ,@body)))
+     (add-hook 'dired-after-readin-hook
+               (<span class="keyword">lambda</span> ()
+                 (<span class="keyword">when</span> (string-match-p ,name (dired-current-directory))
+                   ,@body)))))
+
+(project-specifics <span class="string">"projects/zombietdd"</span>
+  (set (make-local-variable 'slime-js-target-url) <span class="string">"http://localhost:3000/"</span>)
+  (ffip-local-patterns <span class="string">"*.js"</span> <span class="string">"*.jade"</span> <span class="string">"*.css"</span> <span class="string">"*.json"</span> <span class="string">"*.md"</span>))</pre>
+
+<hr/>
+
+<p>
+  I created this macro to help me set up local vars. So in the
+  example, any files in <code>projects/zombietdd</code> will see
+  these slime-js-target-url and the find-file-in-projects patterns.
+</p>
+
+<p>
+  I keep these in a projects-folder to keep track of all the different
+  settings for my projects.
+</p>

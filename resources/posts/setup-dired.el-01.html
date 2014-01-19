@@ -1,0 +1,24 @@
+<!-- 1356957119 -->
+
+<p>I find the default dired look a bit spammy, especially in narrow windows.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Make dired less verbose
+</span>(<span class="keyword">require</span> '<span class="constant">dired-details</span>)
+(setq-default dired-details-hidden-string <span class="string">"--- "</span>)
+(dired-details-install)</pre>
+
+<hr/>
+
+<p>
+  By installing <kbd>M-x</kbd> <code>package-install
+  dired-details</code> and using this snippet, we hide all the
+  unnecessary <code>ls</code>-details.
+</p>
+
+<p>
+  That rare occasion where you actually need that information, you can
+  show it with <kbd>)</kbd> and hide again with <kbd>(</kbd>.
+</p>

@@ -1,0 +1,33 @@
+<!-- 1369231964 -->
+
+<p>
+  I already covered the awesomely
+  commented <a href="http://whattheemacsd.com/init.el-04.html">diminish.el</a>.
+  Here's another trick to reduce the cruft in your modeline:
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defmacro</span> <span class="function-name">rename-modeline</span> (package-name mode new-name)
+  `(<span class="keyword">eval-after-load</span> ,package-name
+     '(<span class="keyword">defadvice</span> ,mode (after rename-modeline activate)
+        (setq mode-name ,new-name))))
+
+(rename-modeline <span class="string">"js2-mode"</span> js2-mode <span class="string">"JS2"</span>)
+(rename-modeline <span class="string">"clojure-mode"</span> clojure-mode <span class="string">"Clj"</span>)</pre>
+
+<hr/>
+
+<p>With this, I reduce the <code>js2-mode</code> modeline lighter from "JavaScript IDE" to just "JS2".</p>
+
+<p>
+  I stole it from <a href="https://github.com/bodil/emacs.d">Bodil's
+    .emacs.d</a> and macroified it a little.
+
+  The first argument is the package name, the second is the mode in
+  question, and the third is the new lighter for the mode.
+</p>
+
+
+

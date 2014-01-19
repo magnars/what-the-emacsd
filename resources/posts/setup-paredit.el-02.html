@@ -1,0 +1,57 @@
+<!-- 1358618469 -->
+
+<p>Yesterday Kototama commented about another neat paredit addition: duplicating sexps. This is my take on that:</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">paredit--is-at-start-of-sexp</span> ()
+  (and (looking-at <span class="string">"(</span><span class="regexp-grouping-backslash"><span class="string">\\</span></span><span class="regexp-grouping-construct"><span class="string">|</span></span><span class="string">\\["</span>)
+       (not (nth 3 (syntax-ppss))) <span class="comment-delimiter">;; </span><span class="comment">inside string
+</span>       (not (nth 4 (syntax-ppss))))) <span class="comment-delimiter">;; </span><span class="comment">inside comment
+</span>
+(<span class="keyword">defun</span> <span class="function-name">paredit-duplicate-closest-sexp</span> ()
+  (interactive)
+  <span class="comment-delimiter">;; </span><span class="comment">skips to start of current sexp
+</span>  (<span class="keyword">while</span> (not (paredit--is-at-start-of-sexp))
+    (paredit-backward))
+  (set-mark-command nil)
+  <span class="comment-delimiter">;; </span><span class="comment">while we find sexps we move forward on the line
+</span>  (<span class="keyword">while</span> (and (bounds-of-thing-at-point 'sexp)
+              (&lt;= (point) (car (bounds-of-thing-at-point 'sexp)))
+              (not (= (point) (line-end-position))))
+    (forward-sexp)
+    (<span class="keyword">while</span> (looking-at <span class="string">" "</span>)
+      (forward-char)))
+  (kill-ring-save (mark) (point))
+  <span class="comment-delimiter">;; </span><span class="comment">go to the next line and copy the sexprs we encountered
+</span>  (paredit-newline)
+  (yank)
+  (exchange-point-and-mark))</pre>
+
+<hr/>
+
+<p>
+  Like Kototama
+  says <a href="http://inclojurewetrust.blogspot.de/2013/01/duplicating-s-expressions-on-line.html">in
+  his blogpost</a>, duplicating a line is very useful, but sometimes
+  it leads to invalid sexps. In the blogpost he shows a snippet that
+  will duplicate the sexp after point. I immediately realized I had
+  really been wanting this.
+</p>
+
+<p>
+  The version listed here is a little modified: It will duplicate the
+  sexp you are currently inside, or looking at, or looking behind at.
+  So basically, point can be in any of these positions:
+</p>
+
+<pre class="code-snippet">
+  |(my sexp) <span class="comment-delimiter">;; in front</span>
+  (my| sexp) <span class="comment-delimiter">;; inside</span>
+  (my sexp)| <span class="comment-delimiter">;; at the end</span>
+</pre>
+
+<p>
+  Insta-useful!
+</p>

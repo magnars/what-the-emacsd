@@ -1,0 +1,39 @@
+<!-- 1356248109 -->
+
+<p>What are those line numbers for anyway?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(<span class="keyword">defun</span> <span class="function-name">goto-line-with-feedback</span> ()
+  <span class="doc">"Show line numbers temporarily, while prompting for the line number input"</span>
+  (interactive)
+  (<span class="keyword">unwind-protect</span>
+      (<span class="keyword">progn</span>
+        (linum-mode 1)
+        (goto-line (read-number <span class="string">"Goto line: "</span>)))
+    (linum-mode -1)))</pre>
+
+<hr/>
+
+<p>
+  I don't have line numbers visible in the fringe of my Emacs. If I
+  want to go to a line number, that is usually because it is
+  referenced in an error message somewhere. Showing them all the time
+  is just noise.
+</p>
+
+<p>
+  Still, many people want line numbers visible. I guess that is
+  because they use them for navigation. This snippet shows line
+  numbers temporarily just when you're going to a line number
+  with <code>goto-line</code>.
+</p>
+
+<p>
+  Notice the nice <code>remap</code>-trick in the key binding. It will
+  remap all key bindings from <code>goto-line</code> to
+  <code>goto-line-with-feedback</code>. Neat!
+</p>

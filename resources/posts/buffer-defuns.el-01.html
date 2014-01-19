@@ -1,0 +1,46 @@
+<!-- 1357148709 -->
+
+<p>Uneven application of white-space is bad, m'kay?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">cleanup-buffer-safe</span> ()
+  <span class="doc">"Perform a bunch of safe operations on the whitespace content of a buffer.
+Does not indent buffer, because it is used for a before-save-hook, and that
+might be bad."</span>
+  (interactive)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+
+<span class="comment-delimiter">;; </span><span class="comment">Various superfluous white-space. Just say no.
+</span>(add-hook 'before-save-hook 'cleanup-buffer-safe)
+
+(<span class="keyword">defun</span> <span class="function-name">cleanup-buffer</span> ()
+  <span class="doc">"Perform a bunch of operations on the whitespace content of a buffer.
+Including indent-buffer, which should not be called automatically on save."</span>
+  (interactive)
+  (cleanup-buffer-safe)
+  (indent-region (point-min) (point-max)))
+
+(global-set-key (kbd <span class="string">"C-c n"</span>) 'cleanup-buffer)</pre>
+
+<hr/>
+
+<p>
+  I use these two literally all the time. The first one removes
+  trailing whitespace and replaces all tabs with spaces before save.
+</p>
+
+<p>
+  The last one I've got on a key - it also indents the entire buffer.
+</p>
+
+<p>
+  These might not be for everybody. Sometimes you do want tabs (I'm looking at
+  you <code>Makefile</code> <em>grrrrr</em>). Then this isn't optimal.
+  The same can be said for when Emacs doesn't indent correctly. But
+  that is a horrid, unacceptable situation in any case. I always fix
+  those as soon as I can.
+</p>

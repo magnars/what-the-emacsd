@@ -1,0 +1,31 @@
+<!-- 1359181362 -->
+
+<p>Here's one keybinding I could not live without.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(global-set-key (kbd <span class="string">"M-j"</span>)
+            (<span class="keyword">lambda</span> ()
+                  (interactive)
+                  (join-line -1)))</pre>
+
+<hr/>
+
+<p>It joins the following line onto this one.</p>
+
+<p>
+  Let's say I want to collapse this paragraph-tag to one line:
+</p>
+
+<pre class="code-snippet">
+  &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"example"</span>&gt;
+    Some text
+    over multiple
+    lines.
+  &lt;/<span class="function-name">p</span>&gt;</pre>
+
+<p>
+  With point anywhere on the first line, I simply press <kbd>M-j</kbd>
+  multiple times to pull the lines up.
+</p>

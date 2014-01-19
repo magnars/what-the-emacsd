@@ -1,0 +1,30 @@
+<!-- 1366502667 -->
+
+<p>
+  Undo in region is one of those mind-blowing things about emacs.
+  However, the region keeps jumping about when I use it. So I added this:
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Keep region when undoing in region
+</span>(<span class="keyword">defadvice</span> <span class="function-name">undo-tree-undo</span> (around keep-region activate)
+  (<span class="keyword">if</span> (use-region-p)
+      (<span class="keyword">let</span> ((m (set-marker (make-marker) (mark)))
+            (p (set-marker (make-marker) (point))))
+        ad-do-it
+        (goto-char p)
+        (set-mark m)
+        (set-marker p nil)
+        (set-marker m nil))
+    ad-do-it))</pre>
+
+<hr/>
+
+<p>Now the region stays in place while I'm undoing.</p>
+
+<p>
+  Since I use undo-tree, that's what it advises, but I would guess it
+  works the same for regular old undo too.
+</p>

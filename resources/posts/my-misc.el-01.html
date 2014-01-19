@@ -1,0 +1,31 @@
+<!-- 1356206428 -->
+
+<p>Searching the web can also be improved with Emacs.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(global-set-key (kbd <span class="string">"C-x g"</span>) 'webjump)
+
+<span class="comment-delimiter">;; </span><span class="comment">Add Urban Dictionary to webjump
+</span>(<span class="keyword">eval-after-load</span> <span class="string">"webjump"</span>
+'(add-to-list 'webjump-sites
+              '(<span class="string">"Urban Dictionary"</span> .
+                [simple-query
+                 <span class="string">"www.urbandictionary.com"</span>
+                 <span class="string">"http://www.urbandictionary.com/define.php?term="</span>
+                 <span class="string">""</span>])))</pre>
+
+<hr/>
+
+<p>
+  Webjump let's you quickly search Google, Wikipedia, Emacs Wiki and
+  other pages. I've got it bound to <kbd>C-x g</kbd>.
+</p>
+
+<p>
+  This snippet adds Urban Dictionary to the list of pages, so the next
+  time you wonder what those dastardly kids mean when they write
+  faceroll or sassafrassa or Technotard or kthxbye or whatever else is
+  hip these days, well, then you can find out. With <code>webjump</code>.
+</p>

@@ -1,0 +1,71 @@
+html {background: black url(../images/dark-leather.png) repeat; font-family: Helvetica, arial, freesans, clean, sans-serif;}
+body {-webkit-text-size-adjust:100%; line-height: 1.3;}
+#main {max-width: 900px; margin: 0 auto;}
+a {color: #496185;}
+strong {font-weight: bold;}
+#logo_link {margin: 20px auto 20px; width: 251px; display: block;}
+
+#footer,
+#tagline { text-align: center; margin: 20px 40px; font-size: 16px; }
+
+small,
+#footer {font-size: 13px; }
+
+small,
+#footer,
+.quote {color: #777;}
+
+.right {float: right;}
+.byline {color: #333; margin: 20px 5px 0; font-size: 12px;}
+.byline a {color: #333;}
+
+blockquote {padding-left: 10px;}
+
+kbd,
+code,
+.code-snippet {font-family: Consolas, "Liberation Mono", Courier, monospace;}
+
+.code-snippet {color: #fff; background-color: #000000; overflow: hidden; font-size: 12px; font-family: Consolas, "Liberation Mono", Courier, monospace;}
+.code-snippet .builtin {/* font-lock-builtin-face */ color: #b0c4de;}
+.code-snippet .comment {/* font-lock-comment-face */ color: #ff7f24;}
+.code-snippet .comment-delimiter {/* font-lock-comment-delimiter-face */ color: #ff7f24;}
+.code-snippet .constant {/* font-lock-constant-face */ color: #7fffd4;}
+.code-snippet .doc {/* font-lock-doc-face */ color: #ffa07a;}
+.code-snippet .function-name {/* font-lock-function-name-face */ color: #87cefa;}
+.code-snippet .keyword {/* font-lock-keyword-face */ color: #00ffff;}
+.code-snippet .string {/* font-lock-string-face */ color: #ffa07a;}
+
+#next { margin: 20px 30px; list-style: disc; padding-left: 10px; }
+#next li {margin-bottom: 5px;}
+
+#comments { margin: 40px 20px;}
+
+kbd,
+.small {font-size: 13px;}
+
+kbd {padding: 2px 8px 1px; border: 1px solid #282828; border-bottom: 2px solid #282828; background-color: #222; color: #ccc; -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #000000 inset; -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px black inset; box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px black inset; border-radius: 3px; vertical-align: baseline; display: inline-block; margin: 0 2px; text-shadow: 0 1px 0 black; line-height: 1.3; white-space: nowrap;}
+
+pre,
+blockquote,
+p {margin: 5px 5px 12px;}
+
+em {font-style: italic;}
+
+blockquote { border-left: 5px solid #151515; }
+
+.post { background: #000; border: 1px solid #222; border-radius: 10px; margin: 10px 10px 20px; padding: 12px 10px; font-size: 16px; color: #ccc;}
+hr { border: none; border-bottom: 1px dotted #222; height: 0px; margin: 15px -10px; }
+
+@media screen and (min-width: 650px) {
+    .code-snippet {font-size: 14px;}
+    .post {padding: 25px 20px 15px;}
+    hr {margin: 20px -20px;}
+    .byline {padding-top: 10px;}
+}
+
+@media screen and (min-width: 800px) {
+    .code-snippet {font-size: 16px;}
+    .post {padding: 30px 30px 15px;}
+    hr {margin: 25px -30px;}
+    .byline {padding-top: 15px;}
+}

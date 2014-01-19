@@ -1,0 +1,27 @@
+<!-- 1356073171 -->
+
+<p>Need different settings for different machines?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Settings for currently logged in user
+</span>(setq user-settings-dir
+      (concat user-emacs-directory <span class="string">"users/"</span> user-login-name))
+
+<span class="comment-delimiter">;; </span><span class="comment">Conclude init by setting up specifics for the current user
+</span>(<span class="keyword">when</span> (file-exists-p user-settings-dir)
+  (mapc 'load (directory-files user-settings-dir nil <span class="string">"^[</span><span class="negation-char"><span class="string">^</span></span><span class="string">#].*el$"</span>)))</pre>
+
+<hr/>
+
+<p>
+  These are the last lines of my init.el. They will load
+  any <code>*.el</code> files in the
+  <code>~/.emacs.d/users/<small>user-login-name</small>/</code>
+  folder.
+</p>
+
+<p>
+  Anything specific for that machine goes there.
+</p>

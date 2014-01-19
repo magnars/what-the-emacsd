@@ -1,0 +1,37 @@
+<!-- 1357243939 -->
+
+<p>Ido gives fuzzy matching in my completing-read. I want that everywhere.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Use ido everywhere
+</span>(<span class="keyword">require</span> '<span class="constant">ido-ubiquitous</span>)
+(ido-ubiquitous-mode 1)
+
+<span class="comment-delimiter">;; </span><span class="comment">Fix ido-ubiquitous for newer packages
+</span>(<span class="keyword">defmacro</span> <span class="function-name">ido-ubiquitous-use-new-completing-read</span> (cmd package)
+  `(<span class="keyword">eval-after-load</span> ,package
+     '(<span class="keyword">defadvice</span> ,cmd (around ido-ubiquitous-new activate)
+        (<span class="keyword">let</span> ((ido-ubiquitous-enable-compatibility nil))
+          ad-do-it))))
+
+(ido-ubiquitous-use-new-completing-read webjump 'webjump)
+(ido-ubiquitous-use-new-completing-read yas/expand 'yasnippet)
+(ido-ubiquitous-use-new-completing-read yas/visit-snippet-file 'yasnippet)</pre>
+
+<hr/>
+
+<p><code>ido-ubiquitous</code> delivers on that promise.</p>
+
+<p>
+  However, there is some discrepancies in
+  the <code>completing-read</code> API between newer and older
+  versions regarding the case where you just press enter to choose the
+  first item.
+</p>
+
+<p>
+  To fix these, some of the newer usages of completing read need a
+  slightly different implementation. These tweaks fix that problem.
+</p>

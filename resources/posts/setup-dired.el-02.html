@@ -1,0 +1,33 @@
+<!-- 1359702757 -->
+
+<p>In dired, <kbd>M-></kbd> and <kbd>M-<</kbd> never take me where I want to go.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">dired-back-to-top</span> ()
+  (interactive)
+  (beginning-of-buffer)
+  (dired-next-line 4))
+
+(define-key dired-mode-map
+  (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
+
+(<span class="keyword">defun</span> <span class="function-name">dired-jump-to-bottom</span> ()
+  (interactive)
+  (end-of-buffer)
+  (dired-next-line -1))
+
+(define-key dired-mode-map
+  (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)</pre>
+
+<hr/>
+
+<p>
+  That is, now they do.
+</p>
+
+<p>
+  Instead of taking me to the very beginning or very end, they now
+  take me to the first or last file.
+</p>

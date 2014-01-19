@@ -1,0 +1,29 @@
+<!-- 1358502091 -->
+
+<p>Programming any lisp? Then this paredit-inspired snippet may be for you.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">paredit-wrap-round-from-behind</span> ()
+  (interactive)
+  (forward-sexp -1)
+  (paredit-wrap-round)
+  (insert <span class="string">" "</span>)
+  (forward-char -1))
+
+(define-key paredit-mode-map (kbd <span class="string">"M-)"</span>)
+  'paredit-wrap-round-from-behind)</pre>
+
+<hr/>
+
+<p>
+  With point in front of a sexp, <code>paredit-wrap-round</code>
+  (bound to <kbd>M-(</kbd>), will open a paren in front the the sexp,
+  and place the closing paren at the end of it. That's pretty handy.
+</p>
+
+<p>
+  This snippet does the same, but from the other end. It saves me
+  a <kbd>C-M-b</kbd> ever so often. I like it.
+</p>

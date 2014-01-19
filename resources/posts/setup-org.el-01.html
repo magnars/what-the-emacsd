@@ -1,0 +1,30 @@
+<!-- 1362085520 -->
+
+<p>I mainly use org-mode for a collection of TODO-lists.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">myorg-update-parent-cookie</span> ()
+  (<span class="keyword">when</span> (equal major-mode 'org-mode)
+    (<span class="keyword">save-excursion</span>
+      (<span class="keyword">ignore-errors</span>
+        (org-back-to-heading)
+        (org-update-parent-todo-statistics)))))
+
+(<span class="keyword">defadvice</span> <span class="function-name">org-kill-line</span> (after fix-cookies activate)
+  (myorg-update-parent-cookie))
+
+(<span class="keyword">defadvice</span> <span class="function-name">kill-whole-line</span> (after fix-cookies activate)
+  (myorg-update-parent-cookie))</pre>
+
+<hr/>
+
+<p>
+  So I get a little annoyed when the <code>[17/23]</code> cookies at
+  the parent level aren't updated when I remove an item.
+</p>
+
+<p>
+  This code fixes that.
+</p>

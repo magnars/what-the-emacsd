@@ -1,0 +1,34 @@
+<!-- 1356859849 -->
+
+<p>
+  Like <a href="/file-defuns.el-01.html">rename yesterday</a>, I think
+  delete deserves a designated keybinding.
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+(<span class="keyword">defun</span> <span class="function-name">delete-current-buffer-file</span> ()
+  <span class="doc">"Removes file connected to current buffer and kills buffer."</span>
+  (interactive)
+  (<span class="keyword">let</span> ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (<span class="keyword">if</span> (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (<span class="keyword">when</span> (yes-or-no-p <span class="string">"Are you sure you want to remove this file? "</span>)
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message <span class="string">"File '%s' successfully removed"</span> filename)))))
+
+(global-set-key (kbd <span class="string">"C-x C-k"</span>) 'delete-current-buffer-file)</pre>
+
+<hr/>
+
+<p>This is it. <kbd>C-x C-k</kbd>: file begone!</p>
+
+<p>
+  I like the feel between <kbd>C-x k</kbd> to kill the buffer
+  and <kbd>C-x C-k</kbd> to kill the file. Release ctrl to kill it a little,
+  hold to kill it a lot.
+</p>

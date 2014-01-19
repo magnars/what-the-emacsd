@@ -1,0 +1,23 @@
+<!-- 1356346740 -->
+
+<p>Tired of seeing stale dired buffers?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Auto refresh buffers
+</span>(global-auto-revert-mode 1)
+
+<span class="comment-delimiter">;; </span><span class="comment">Also auto refresh dired, but be quiet about it
+</span>(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)</pre>
+
+<hr/>
+
+<p>Auto revert mode looks for changes to files, and updates them for you.</p>
+
+<p>
+  With these settings, dired buffers are also updated. The last
+  setting makes sure that you're not alerted every time this happens.
+  Which is every time you save something.
+</p>

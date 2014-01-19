@@ -1,0 +1,48 @@
+<!-- 1359110984 -->
+
+<p>There are lots of neat ways of moving around quickly in a buffer.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Move more quickly
+</span>(global-set-key (kbd <span class="string">"C-S-n"</span>)
+                (<span class="keyword">lambda</span> ()
+                  (interactive)
+                  (<span class="keyword">ignore-errors</span> (next-line 5))))
+
+(global-set-key (kbd <span class="string">"C-S-p"</span>)
+                (<span class="keyword">lambda</span> ()
+                  (interactive)
+                  (<span class="keyword">ignore-errors</span> (previous-line 5))))
+
+(global-set-key (kbd <span class="string">"C-S-f"</span>)
+                (<span class="keyword">lambda</span> ()
+                  (interactive)
+                  (<span class="keyword">ignore-errors</span> (forward-char 5))))
+
+(global-set-key (kbd <span class="string">"C-S-b"</span>)
+                (<span class="keyword">lambda</span> ()
+                  (interactive)
+                  (<span class="keyword">ignore-errors</span> (backward-char 5))))</pre>
+
+<hr/>
+
+<p>
+  For instance, check
+  out <a href="http://emacsrocks.com/e10.html">Emacs Rocks e10:
+  Jumping Around</a>.
+</p>
+
+<p>
+  But sometimes I just want to browse a little. Or move a few lines
+  down. These keybindings let me do that more quickly
+  than <kbd>C-n</kbd> <kbd>C-n</kbd> <kbd>C-n</kbd> <kbd>C-n</kbd> <kbd>C-n</kbd> <kbd>C-n</kbd>
+  ...
+</p>
+
+<p>
+  In fact, with these I can navigate to any line within a distance of
+  11 in 3 keystrokes or less. Or close enough to count. Two of them
+  require 4 keystrokes. Can you figure out which ones?
+</p>

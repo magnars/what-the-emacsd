@@ -1,0 +1,29 @@
+<!-- 1355814957 -->
+
+<p>
+  Tired of navigating back to where you were last in a file?
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">Save point position between sessions
+</span>(<span class="keyword">require</span> '<span class="constant">saveplace</span>)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name <span class="string">".places"</span> user-emacs-directory))</pre>
+
+<hr/>
+
+<p>
+  The <code>saveplace</code> package is part of Emacs, and remembers the
+  position of point - even between emacs sessions.
+</p>
+
+<p>
+  The last line sets the path to where saveplace stores your position
+  data. Change it at your peril! <small>*</small>
+</p>
+
+<p>
+  <small>* Ahem, there really is no peril. That was just melodrama.</small>
+</p>

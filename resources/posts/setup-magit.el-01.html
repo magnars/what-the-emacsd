@@ -1,0 +1,32 @@
+<!-- 1356261749 -->
+
+<p>You are using magit with your git, right?</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter">;; </span><span class="comment">full screen magit-status
+</span>
+(<span class="keyword">defadvice</span> <span class="function-name">magit-status</span> (around magit-fullscreen activate)
+  (window-configuration-to-register <span class="builtin">:magit-fullscreen</span>)
+  ad-do-it
+  (delete-other-windows))
+
+(<span class="keyword">defun</span> <span class="function-name">magit-quit-session</span> ()
+  <span class="doc">"Restores the previous window configuration and kills the magit buffer"</span>
+  (interactive)
+  (kill-buffer)
+  (jump-to-register <span class="builtin">:magit-fullscreen</span>))
+
+(define-key magit-status-mode-map (kbd <span class="string">"q"</span>) 'magit-quit-session)</pre>
+
+<hr/>
+
+<p>
+  This code makes <code>magit-status</code> run alone in the frame,
+  and then restores the old window configuration when you quit out of magit.
+</p>
+
+<p>
+  No more juggling windows after commiting. It's magit bliss.
+</p>
