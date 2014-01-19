@@ -1,6 +1,7 @@
 (ns what-the-emacsd.pages
   (:require [what-the-emacsd.templates :as tmpl]
-            [what-the-emacsd.rss :as rss]))
+            [what-the-emacsd.rss :as rss]
+            [stasis.core :as stasis]))
 
 (defn- create-page [f]
   (fn [context] (apply str (tmpl/layout context (f)))))
@@ -14,7 +15,7 @@
        (into {})))
 
 (defn get-pages [posts]
-  (merge
-   {"/index.html" (create-page #(tmpl/all-posts posts))
-    "/atom.xml" (rss/atom-xml posts)}
-   (single-posts posts)))
+  (stasis/merge-page-sources
+   {:general-pages  {"/index.html" (create-page #(tmpl/all-posts posts))
+                     "/atom.xml" (rss/atom-xml posts)}
+    :posts (single-posts posts)}))
