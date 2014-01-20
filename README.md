@@ -3,8 +3,8 @@
 The webpage for http://whattheemacsd.com.
 
 Made with [Stasis](https://github.com/magnars/stasis) for static site
-generation, and [Optimus](https://github.com/magnars/optimus) for
-frontend optimization.
+generation, [Enlive](https://github.com/cgrand/enlive) for building HTML
+and [Optimus](https://github.com/magnars/optimus) for frontend optimization.
 
 Start a local version:
 
