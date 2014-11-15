@@ -1,0 +1,25 @@
+<!-- 1416044076 -->
+
+<p>
+  Now that Emacs has <a href="">moved to git</a>, maybe it's time to start
+  contributing directly? Here's how you build Emacs from source on OS X:
+</p>
+
+<hr/>
+
+<pre class="code-snippet">
+git clone git://git.savannah.gnu.org/emacs.git
+cd emacs
+./autogen.sh
+./configure --with-ns
+make install
+cd nextstep
+open Emacs.app </pre>
+
+<hr/>
+
+<p>
+  For more info and instructions for other distros,
+  see <a href="http://lars.ingebrigtsen.no/2014/11/13/welcome-new-emacs-developers/">Lars'
+  post</a>.
+</p>
