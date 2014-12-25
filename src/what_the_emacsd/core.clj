@@ -30,8 +30,16 @@
 
 (def export-directory "./build/")
 
+(defn- load-export-dir []
+  (stasis/slurp-directory export-directory #"\.[^.]+$"))
+
 (defn export []
-  (let [assets (optimizations/all (get-assets) {})]
+  (let [assets (optimize (get-assets) {})
+        old-files (load-export-dir)]
     (stasis/empty-directory! export-directory)
     (optimus.export/save-assets assets export-directory)
-    (stasis/export-pages (get-pages) export-directory {:optimus-assets assets})))
+    (stasis/export-pages (get-pages) export-directory {:optimus-assets assets})
+    (println)
+    (println "Export complete:")
+    (stasis/report-differences old-files (load-export-dir))
+    (println)))
