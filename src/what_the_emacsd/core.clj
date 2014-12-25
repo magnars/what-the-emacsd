@@ -24,8 +24,10 @@
   (require 'what-the-emacsd.templates :reload)
   (pages/get-pages (load-posts)))
 
+(def optimize optimizations/all)
+
 (def app (-> (stasis/serve-pages get-pages)
-             (optimus/wrap get-assets optimizations/all serve-live-assets)
+             (optimus/wrap get-assets optimize serve-live-assets)
              wrap-content-type))
 
 (def export-directory "./build/")
