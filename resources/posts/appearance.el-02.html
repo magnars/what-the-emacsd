@@ -1,0 +1,16 @@
+<!-- 1697873638 -->
+
+<p>I don't much enjoy my editor beeping at me.</p>
+
+<hr/>
+
+<pre class="code-snippet">
+<span class="comment-delimiter"><span class="region">;; </span></span><span class="comment"><span class="region">Don't beep. Just blink the modeline on errors.
+</span></span><span class="region">(</span><span class="keyword"><span class="region">setq</span></span><span class="region"> ring-bell-function (</span><span class="keyword"><span class="region">lambda</span></span><span class="region"> ()
+                           (invert-face 'mode-line)
+                           (run-with-timer 0.05 nil 'invert-face 'mode-line)))
+</span</pre>
+
+<hr/>
+
+<p>This should help Emacs be a bit more subtle in the face of everyday errors, you know, like pressing C-g. BEEP BEEP!</p>
